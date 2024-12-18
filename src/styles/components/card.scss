@@ -1,0 +1,84 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  gap: 20px; /* Расстояние между карточками */
+  justify-items: center; /* Центрирование карточек по горизонтали */
+  padding: 20px;
+  max-width: 1200px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирование контейнера на странице */
+}
+
+.card {
+  max-width: 300px; /* Ограничиваем ширину карточки */
+  margin: 0 auto; /* Центрируем карточки */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  &-content {
+    padding: 15px;
+
+    &-title {
+      font-size: 18px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    &-description {
+      font-size: 14px;
+      color: #666;
+      margin: 10px 0;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    .like-icon {
+      cursor: pointer;
+      font-size: 20px;
+      color: gray;
+      transition: color 0.2s ease;
+
+      &.liked {
+        color: red;
+      }
+
+      &:hover {
+        color: #ff4a4a;
+      }
+    }
+
+    .delete-button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}

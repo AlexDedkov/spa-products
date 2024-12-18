@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES2016",                     // Целевая версия JavaScript
+      "module": "ESNext",                    // Используемая система модулей
+      "lib": ["DOM", "DOM.Iterable", "ESNext"], // Подключение библиотек (DOM и ES)
+      "jsx": "react-jsx",                    // Поддержка JSX
+      "strict": true,                        // Включить строгий режим TypeScript
+      "moduleResolution": "node",           // Резолвер модулей
+      "esModuleInterop": true,              // Поддержка импорта CommonJS модулей
+      "skipLibCheck": true,                  // Пропуск проверки типов библиотек
+      "forceConsistentCasingInFileNames": true // Чувствительность к регистру в путях файлов
+    },
+    "include": ["src"],                      // Включение файлов из папки src
+    "exclude": ["node_modules"],              // Исключение node_modules
+
+    
+  }
+  

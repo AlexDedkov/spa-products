@@ -1,35 +1,30 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchProducts } from '../api/productsApi';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '../redux/productsSlice';
-import Filters from '../components/Filters';
-import ProductList from '../components/ProductList';
+import { RootState } from '../redux/store';
+import axios from 'axios';
 
 const Products: React.FC = () => {
   const dispatch = useDispatch();
+  const products = useSelector((state: RootState) => state.products.items);
 
-  // Загружаем данные с API при загрузке компонента
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const products = await fetchProducts();
-        // Обновляем состояние Redux
-        dispatch(setProducts(products));
-      } catch (error) {
-        console.error('Ошибка загрузки продуктов:', error);
-      }
+    const fetchProducts = async () => {
+      const response = await axios.get('/api/products'); // Замените на ваш URL API
+      dispatch(setProducts(response.data));
     };
 
-    loadProducts();
+    fetchProducts();
   }, [dispatch]);
 
   return (
-    <div className="products-page">
-      <h1>Products</h1>
-      {/* Фильтры */}
-      <Filters />
-      {/* Список продуктов */}
-      <ProductList />
+    <div>
+      {products.map((product) => (
+        <div key={product.id}>
+          <h3>{product.title}</h3>
+          <p>{product.description}</p>
+        </div>
+      ))}
     </div>
   );
 };

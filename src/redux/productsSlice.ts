@@ -26,14 +26,15 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // Установка списка продуктов
-    setProducts(state, action: PayloadAction<Product[]>) {
-      state.items = action.payload;
-    },
-
-    // Добавление нового продукта
     addProduct(state, action: PayloadAction<Product>) {
       state.items.push(action.payload);
+    },
+    setProducts(state, action: PayloadAction<Product[]>) {
+      // Объединяем загруженные данные с локальными
+      const newItems = action.payload.filter(
+        (apiProduct) => !state.items.some((item) => item.id === apiProduct.id)
+      );
+      state.items = [...state.items, ...newItems];
     },
 
     // Переключение статуса лайка

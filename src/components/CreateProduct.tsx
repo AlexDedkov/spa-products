@@ -17,15 +17,14 @@ const CreateProduct: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const newProduct = {
-      id: Date.now(), // Generate unique ID
+      id: Date.now(), // Генерация уникального ID
       ...data,
-      liked: false, // Default liked status
+      liked: false, // Добавляем начальное значение для свойства liked
     };
-  
-    dispatch(addProduct(newProduct)); // Add to Redux state
-    navigate('/products'); // Navigate to products page
+    dispatch(addProduct(newProduct));
+    navigate('/products'); // Переход на страницу продуктов
   };
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '500px', margin: 'auto' }}>
       <div>
